@@ -37,10 +37,10 @@ jobs:
 
       - name: Verify OCI metadata
         run: |
-          test "$(docker inspect -f '{{ index .Config.Labels \"org.opencontainers.image.source\" }}' mcc:ci-amd64)" = "https://github.com/Ploos-AS/minecraft-console-client"
-          test "$(docker inspect -f '{{ index .Config.Labels \"org.opencontainers.image.version\" }}' mcc:ci-amd64)" = "ci"
-          test "$(docker inspect -f '{{ index .Config.Labels \"org.opencontainers.image.revision\" }}' mcc:ci-amd64)" = "$GITHUB_SHA"
-          test "$(docker inspect -f '{{ index .Config.Labels \"io.ploos.mcc.upstream.version\" }}' mcc:ci-amd64)" = "20260829-511"
+          test "$(docker inspect -f '{{ index .Config.Labels "org.opencontainers.image.source" }}' mcc:ci-amd64)" = "https://github.com/Ploos-AS/minecraft-console-client"
+          test "$(docker inspect -f '{{ index .Config.Labels "org.opencontainers.image.version" }}' mcc:ci-amd64)" = "ci"
+          test "$(docker inspect -f '{{ index .Config.Labels "org.opencontainers.image.revision" }}' mcc:ci-amd64)" = "$GITHUB_SHA"
+          test "$(docker inspect -f '{{ index .Config.Labels "io.ploos.mcc.upstream.version" }}' mcc:ci-amd64)" = "20260829-511"
 
       - name: Verify MCC starts and generates persistent config
         run: |
