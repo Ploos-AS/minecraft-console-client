@@ -1,0 +1,9 @@
+Minecraft Console Client is licensed upstream under GPL-3.0-or-later.
+
+This repository contains packaging and integration files for distributing the unmodified
+upstream Minecraft Console Client binary as an OCI image. Those packaging files are also
+provided under GPL-3.0-or-later.
+
+See:
+https://github.com/MCCTeam/Minecraft-Console-Client
+https://www.gnu.org/licenses/gpl-3.0.html
