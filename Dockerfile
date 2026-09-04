@@ -29,7 +29,7 @@ RUN set -eux; \
     echo "$expected_sha256  /MinecraftClient" | sha256sum -c -; \
     chmod 0755 /MinecraftClient
 
-FROM alpine:3.22
+FROM debian:bookworm-slim
 
 ARG MCC_VERSION=20260829-511
 ARG VERSION=dev
@@ -44,8 +44,19 @@ LABEL org.opencontainers.image.title="Ploos-AS Minecraft Console Client" \
       org.opencontainers.image.licenses="GPL-3.0-or-later" \
       io.ploos.mcc.upstream.version="$MCC_VERSION"
 
-RUN addgroup -g 1000 mcc \
-    && adduser -D -u 1000 -G mcc -h /opt/data mcc \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       ca-certificates \
+       libc6 \
+       libgcc-s1 \
+       libgssapi-krb5-2 \
+       libicu72 \
+       libssl3 \
+       libstdc++6 \
+       zlib1g \
+    && rm -rf /var/lib/apt/lists/* \
+    && groupadd --gid 1000 mcc \
+    && useradd --uid 1000 --gid 1000 --home-dir /opt/data --create-home --shell /usr/sbin/nologin mcc \
     && mkdir -p /opt/data \
     && chown -R mcc:mcc /opt/data
 
