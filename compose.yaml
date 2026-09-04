@@ -1,0 +1,13 @@
+services:
+  mcc:
+    image: ghcr.io/ploos-as/minecraft-console-client:latest
+    container_name: minecraft-console-client
+    stdin_open: true
+    tty: true
+    restart: "no"
+    volumes:
+      - ./data:/opt/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
